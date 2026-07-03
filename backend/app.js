@@ -12,13 +12,24 @@ app
     res.setHeader('Access-Control-Allow-Origin', '*');
     next();
   })
+
+  // Home Route
+  .get('/', (req, res) => {
+    res.status(200).json({
+      message: 'Welcome to my CSE341 REST API',
+      endpoint: '/professional'
+    });
+  })
+
+  // Professional Route
   .use('/professional', professionalRoutes);
 
-mongodb.initDb((err, mongodb) => {
+mongodb.initDb((err) => {
   if (err) {
     console.log(err);
   } else {
-    app.listen(port);
-    console.log(`Connected to DB and listening on ${port}`);
+    app.listen(port, () => {
+      console.log(`Connected to DB and listening on port ${port}`);
+    });
   }
 });
