@@ -6,4 +6,8 @@ routes.get('/:temple_id', temples.findOne);
 
 routes.post('/', temples.create);
 
+routes.put('/:id', temples.update);
+
+routes.delete('/:id', temples.delete);
+
 module.exports = routes;
